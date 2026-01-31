@@ -4,21 +4,13 @@ package Journal;
 use v5.10;
 use strict;
 use warnings;
-use Time::Piece;
 use HTTP::Tiny;
+use Time;
 
 use feature 'say';
 
 use Exporter 'import';
-our @EXPORT_OK = qw(today now);
-
-sub today {
-    return localtime->strftime('%Y-%m-%d');
-}
-
-sub now {
-    return localtime->strftime('%H-%M-%S');
-}
+#our @EXPORT_OK = qw(today now);
 
 sub edit_file {
     my $filename = shift;
@@ -31,7 +23,8 @@ sub edit_file {
 sub append_current_time {
     my $filename = shift;
     open(my $fh, '>>', $filename) or die "Cannot open file: $!";
-    print $fh "\n## " . now() . "\n";
+    my $t = Time->new;
+    print $fh "\n## " . $t->now() . "\n";
     close($fh);
 }
 
@@ -64,9 +57,10 @@ sub get_weather {
 main() unless caller();
 
 sub main {
+    my $t = Time->new;
     my $location = $ENV{WTTR_LOCATION};
     my $journal_dir = 'interstitial_journal';
-    my $filename = $journal_dir . '/' . today() . ".md";
+    my $filename = $journal_dir . '/' . $t->today() . ".md";
 
     if (! -d $journal_dir) {
         die "Cannot open directory $journal_dir/";

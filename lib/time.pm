@@ -7,7 +7,7 @@ use Time::Piece;
 sub new {
     my ($class) = @_;
 
-    my $self;
+    my $self = {};
 
     bless $self, $class;
 
