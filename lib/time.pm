@@ -1,26 +1,20 @@
 package Time;
 
-use strict;
-use warnings;
+use Moose;
 use Time::Piece;
+use namespace::autoclean;
 
-sub new {
-    my ($class) = @_;
+has today => (
+    is => 'rw',
+    default => sub {localtime->strftime('%Y-%m-%d')}
+);
 
-    my $self = {};
 
-    bless $self, $class;
+has now => (
+    is => 'ro',
+    lazy => 1,
+    default => sub {localtime->strftime('%H-%M-%S')}
 
-    return $self;
+);
 
-}
-
-sub today {
-    return localtime->strftime('%Y-%m-%d');
-}
-
-sub now {
-    return localtime->strftime('%H-%M-%S');
-}
-
-1;
+__PACKAGE__->meta->make_immutable();
