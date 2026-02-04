@@ -1,0 +1,6 @@
+package File_writer;
+
+use Moose;
+use namespace::autoclean;
+
+__package__->meta->make_
