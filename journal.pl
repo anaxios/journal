@@ -1,11 +1,13 @@
 #!/usr/bin/env perl
 
 package Journal;
-use v5.10;
+use lib './lib';
 use strict;
 use warnings;
 use HTTP::Tiny;
 use Time;
+use Journal;
+use File_writer;
 
 use feature 'say';
 
@@ -61,6 +63,20 @@ sub main {
     my $location = $ENV{WTTR_LOCATION};
     my $journal_dir = 'interstitial_journal';
     my $filename = $journal_dir . '/' . $t->today() . ".md";
+
+    my $subcommand = shift @ARGV;
+    if ($subcommand eq 'publish') {
+        say "publish";
+        my $journal = Journal->new;
+        say $journal->dir;
+        foreach my $page ($journal->entries->@*) {
+            my $f = $page->file;
+            $f =~ s/\.md$/.html/;
+            File_writer->new(path => "./_site/". $f)->write($page->convert);
+        }
+
+        exit;
+    }
 
     if (! -d $journal_dir) {
         die "Cannot open directory $journal_dir/";

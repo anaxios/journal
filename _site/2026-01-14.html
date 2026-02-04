@@ -1,0 +1,93 @@
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  +37(35) °F
+    _ - _ - _   ↓ 2 mph
+   _ - _ - _ -  1 mi
+                0.0 in
+</pre>
+
+<h2>02:46:44</h2>
+
+<p>I'm trying to figure out how to make the journal site better. I can easily put all the posts on one page. I played around with that last night.</p>
+
+<p>Yesterday, I went to the local Assyrian bakery. The croissant was good. I look like a hobo and they seemed like they didn't want me there. It's weird how if a person looks like a crazy hobo they probably are a crazy person, but if someone looks like a well put together person they could be a crazy person too. Normal people don't try to make themselves look like crazy people but crazy people try to make themselves look like normal people.</p>
+
+<h2>03:06:20</h2>
+
+<p>It's 3 am and I had to close the window because of a strong perfume coming in. Who the fuck is up 3 am and what are they doing that would make such a strong smell that the neighbors have to shut their windows?</p>
+
+<h2>04:36:12</h2>
+
+<p>Looks like they are going all in with AI. Pete Hegseth want to use it for the Department of War <a href="https://youtu.be/37rV4AJvaxk?si=4tuTRZTdNcdRT28n">https://youtu.be/37rV4AJvaxk?si=4tuTRZTdNcdRT28n</a> This is not good. They want to put Grok in the military.</p>
+
+<h2>05:22:11</h2>
+
+<p>Perl Cheat Sheet:</p>
+
+<p><code>
+CONTEXTS  SIGILS  ref        ARRAYS        HASHES
+void      $scalar SCALAR     @array        %hash
+scalar    @array  ARRAY      @array[0, 2]  @hash{'a', 'b'}
+list      %hash   HASH       $array[0]     $hash{'a'}
+          &amp;sub    CODE
+          *glob   GLOB       SCALAR VALUES
+                  FORMAT     number, string, ref, glob, undef
+REFERENCES
+\      reference       $$foo[1]       aka $foo-&gt;[1]
+$@%&amp;*  dereference     $$foo{bar}     aka $foo-&gt;{bar}
+[]     anon. arrayref  ${$$foo[1]}[2] aka $foo-&gt;[1]-&gt;[2]
+{}     anon. hashref   ${$$foo[1]}[2] aka $foo-&gt;[1][2]
+\()    list of refs
+                       SYNTAX
+OPERATOR PRECEDENCE    foreach (LIST) { }     for (a;b;c) { }
+-&gt;                     while   (e) { }        until (e)   { }
+++ --                  if      (e) { } elsif (e) { } else { }
+**                     unless  (e) { } elsif (e) { } else { }
+! ~ \ u+ u-            given   (e) { when (e) {} default {} }
+=~ !~
+* / % x                 NUMBERS vs STRINGS  FALSE vs TRUE
++ - .                   =          =        undef, "", 0, "0"
+&lt;&lt; &gt;&gt;                   +          .        anything else
+named uops              == !=      eq ne
+&lt; &gt; &lt;= &gt;= lt gt le ge   &lt; &gt; &lt;= &gt;=  lt gt le ge
+== != &lt;=&gt; eq ne cmp ~~  &lt;=&gt;        cmp
+&amp;
+| ^             REGEX MODIFIERS       REGEX METACHARS
+&amp;&amp;              /i case insensitive   ^      string begin
+|| //           /m line based ^$      $      str end (bfr \n)
+.. ...          /s . includes \n      +      one or more
+?:              /x /xx ign. wh.space  *      zero or more
+= += last goto  /p preserve           ?      zero or one
+, =&gt;            /a ASCII    /aa safe  {3,7}  repeat in range
+list ops        /l locale   /d  dual  |      alternation
+not             /u Unicode            []     character class
+and             /e evaluate /ee rpts  \b     boundary
+or xor          /g global             \z     string end
+                /o compile pat once   (p)    capture
+DEBUG                                 (?:p)  no capture
+-MO=Deparse     REGEX CHARCLASSES     (?#t)  comment
+-MO=Terse       .   [^\n]             (?=p)  ZW pos ahead
+-D##            \s  whitespace        (?!p)  ZW neg ahead
+-d:Trace        \w  word chars        (?&lt;=p) ZW pos behind \K
+                \d  digits            (?&lt;!p) ZW neg behind
+CONFIGURATION   \pP named property    (?&gt;p)  no backtrack
+perl -V:ivsize  \h  horiz.wh.space    (?|p|p)branch reset
+                \R  linebreak         (?&lt;n&gt;p)named capture
+                \S \W \D \H negate    \g{n}  ref to named cap
+                                      \K     keep left part
+FUNCTION RETURN LISTS
+stat      localtime    caller         SPECIAL VARIABLES
+ 0 dev    0 second      0 package     $_    default variable
+ 1 ino    1 minute      1 filename    $0    program name
+ 2 mode   2 hour        2 line        $/    input separator
+ 3 nlink  3 day         3 subroutine  $\    output separator
+ 4 uid    4 month-1     4 hasargs     $|    autoflush
+ 5 gid    5 year-1900   5 wantarray   $!    sys/libcall error
+ 6 rdev   6 weekday     6 evaltext    $@    eval error
+ 7 size   7 yearday     7 is_require  $$    process ID
+ 8 atime  8 is_dst      8 hints       $.    line number
+ 9 mtime                9 bitmask     @ARGV command line args
+10 ctime               10 hinthash    @INC  include paths
+11 blksz               3..10 only     @_    subroutine args
+12 blcks               with EXPR      %ENV  environment
+</code></p>

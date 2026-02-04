@@ -1,0 +1,71 @@
+<h2>00:33:38</h2>
+
+<p>set up netdata on miyo server and bastian using docker. port: 19999</p>
+
+<p>I moved management of miyo server to use docker context from bastian instead of needing to ssh into the machine directly</p>
+
+<p>I also created a new ssh key for bastian and stored a backup in keepass. Using gpg-agent was impossible over ssh. It was always a pain in the ass, unfortunately.</p>
+
+<h2>07:58:45</h2>
+
+<p>Signed up for Oracle Cloud again. This time they accepted my debit card.</p>
+
+<p>Oracle server name is artix. It should have been artax but I'm retarded.</p>
+
+<h2>08:28:02</h2>
+
+<p>Oracle server name would have been artix but they are out of Ampere free teir capacity. Oh well, it was worth a try.</p>
+
+<h2>08:58:14</h2>
+
+<p>I upgraded the oracle cloud account to pay as you go and set a budget to warn me of charges. I'll keep trying to create a server but I've had no luck so far.</p>
+
+<p>I created a free sql database on oracle cloud and stored the password in keepass.</p>
+
+<h2>09:11:44</h2>
+
+<p>turned off git gpg signing</p>
+
+<pre><code>- `git config --global commit.gpgsign false`
+- `git config --global tag.gpgsign false`
+</code></pre>
+
+<h2>20:39:33</h2>
+
+<p>Oracle Cloud worked and I am writing this note from artix server!</p>
+
+<p>I'm not sure if I'm going to use artix as a main ssh system or just a docker server.</p>
+
+<h2>22:37:06</h2>
+
+<p>Put tailscale on artix server.</p>
+
+<p>I tried to rsync the postgress docker to artix but all the table data is missing. I guess I need to dump and insert</p>
+
+<p>I put irssi on artix</p>
+
+<p>maybe I'll figure out how to use the free sql database on oracle cloud instead of running postgres in docker.</p>
+
+<h2>23:35:42</h2>
+
+<p>I did a pg_dumpall bastian server and restored it on the artix server and that worked.</p>
+
+<h2>18:30:26</h2>
+
+<p>adding mods to cavegame modpack</p>
+
+<pre><code>- no-telemetry
+- no-chat-reports
+</code></pre>
+
+<h2>19:56:49</h2>
+
+<p>playing around with a selfhosted app noteDiscovery. It's very a simple markdown notes app. No image support other than http links. It does support wiki style links which is nice.</p>
+
+<h2>21:26:53</h2>
+
+<p>watching video after video from github Awesome on youtube to find selfhosted apps.</p>
+
+<h2>23:05:14</h2>
+
+<p>I'm off to bed. I spent the last few hours watching more Github Awesome videos trying to find self hosted things to install.</p>
