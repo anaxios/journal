@@ -10,9 +10,10 @@ has path => (
 
 sub write {
     my ($self, $content) = @_;
-    open(my $fh, '>', $self->{path}) or die $!;
+    #print $self->path;
+    open(my $fh, '>', $self->path) or die $!;
     print $fh, $content;
     close($fh);
 }
 
-__package__->meta->make_immutable;
+__PACKAGE__->meta->make_immutable;

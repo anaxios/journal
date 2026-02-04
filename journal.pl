@@ -70,7 +70,9 @@ sub main {
         my $journal = Journal->new;
         say $journal->dir;
         foreach my $page ($journal->entries->@*) {
-            File_writer->new(path => './_site')->write($page->convert);
+            my $f = $page->file;
+            $f =~ s/\.md$/.html/;
+            File_writer->new(path => "./_site/". $f)->write($page->convert);
         }
 
         exit;
