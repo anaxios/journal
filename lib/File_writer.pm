@@ -10,9 +10,10 @@ has path => (
 
 sub write {
     my ($self, $content) = @_;
-    #print $self->path;
+    #print $self->path . "\n";
+    #print $content . "\n";
     open(my $fh, '>', $self->path) or die $!;
-    print $fh, $content;
+    print $fh $content;
     close($fh);
 }
 
