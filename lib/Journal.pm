@@ -27,4 +27,12 @@ sub _collate_pages {
     return \@pages;
 }
 
+sub publish {
+    my $self = shift;
+
+    foreach my $page ($self->entries->@*) {
+        $page->convert;
+    }
+}
+
 __PACKAGE__->meta->make_immutable;

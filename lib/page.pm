@@ -2,6 +2,7 @@ package Page;
 
 use Moose;
 use Text::MultiMarkdown 'markdown';
+use FileWriter;
 use namespace::autoclean;
 
 has source_dir => (
@@ -17,6 +18,18 @@ has dest_dir => (
 has file => (
     is => 'ro',
     required => 1
+);
+
+has writer => (
+    is => 'ro',
+    isa => 'Object',
+    lazy => 1,
+    default => sub {
+        my $self = shift;
+        my $t = $self->file;
+        $t =~ s/\.md$/.html/;
+        return FileWriter->new(path => $self->dest_dir . "/" . $t);
+    }
 );
 
 has md => (
@@ -36,7 +49,8 @@ sub _read_file {
 sub convert {
     my $self = shift;
 
-    markdown($self->md);
+    my $t = markdown($self->md);
+    $self->writer->write($t);
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="css/reset.css"
+    />
+    <style>
+      @layer normal {
+      :root {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: never;
+      }
+      body {
+      /*  background-color: #444444; */
+        background-color: #141414;
+        font-family: "Noto Sans Mono", monospace;
+        font-size: 0.75rem;
+        color: #e0e0e0;
+      }
+      a:link {
+        color: #e0e0e0;
+      }
+      a:visited,
+      a:hover {
+        color: #888888;
+      }
+      h2 {
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+      div {
+
+      }
+      main {
+        background-color: #121212;
+        max-width: 38.5rem;
+        margin: 0 auto;
+      }
+      code {
+        color: #b0b0b0;
+        white-space:pre-wrap;
+      }
+      ul {
+        word-break: break-word;
+        padding-inline-start: var(--m);
+        list-style-position: inside;
+        list-style-type: none;
+      }
+      li {
+        white-space: normal;
+        list-style-position: outside;
+      }
+      li::before {
+        content: "- ";
+        text-indent: calc(var(--s) * -1);
+      }
+      .ascii-art {
+        font-size: 0.625rem; /* 0.625rem 10px */
+        line-height: 1.1;
+        white-space: pre; /* Preserves spaces and line breaks */
+        display: block; /* Spans are inline by default, making it block can help with layout */
+      }
+      .ascii-text {
+        white-space: pre-wrap; /* Preserves spaces and line breaks but allows wrapping */
+      }
+      .ascii-banner {
+        font-size: 0.75rem;
+        line-height: 1;
+        white-space: pre; /* Preserves spaces and line breaks */
+        display: block; /* Spans are inline by default, making it block can help with layout */
+      }
+      .border-gradient {
+        border: var(--xxs) solid;
+        padding: var(--m);
+        border-image-slice: 1;
+        border-image-source: linear-gradient(
+          135deg,
+          rgba(197, 48, 197, 0.08867296918767509) 2%,
+          rgba(48, 122, 197, 0.0802696078431373) 39%,
+          rgba(197, 122, 48, 0.0718662464985994) 91%
+        );
+      }
+      .flow > *:where(:not(:last-child)) {
+        --gap: var(--xxl);
+        margin-bottom: var(--gap);
+        /* outline: 1px solid red; */
+      }
+}
+    </style>
+  </head>
+  <body>
+    <main class="border-gradient">

@@ -7,7 +7,7 @@ use warnings;
 use HTTP::Tiny;
 use Time;
 use Journal;
-use File_writer;
+use FileWriter;
 
 use feature 'say';
 
@@ -64,16 +64,13 @@ sub main {
     my $journal_dir = 'interstitial_journal';
     my $filename = $journal_dir . '/' . $t->today() . ".md";
 
+    # Publish subcommand
+    # TODO make real subcommand system
     my $subcommand = shift @ARGV;
     if ($subcommand eq 'publish') {
         say "publish";
         my $journal = Journal->new;
-        say $journal->dir;
-        foreach my $page ($journal->entries->@*) {
-            my $f = $page->file;
-            $f =~ s/\.md$/.html/;
-            File_writer->new(path => "./_site/". $f)->write($page->convert);
-        }
+        $journal->publish;
 
         exit;
     }

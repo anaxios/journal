@@ -1,4 +1,4 @@
-package File_writer;
+package FileWriter;
 
 use Moose;
 use namespace::autoclean;
