@@ -37,25 +37,15 @@ sub _build_entries {
     my @files = grep {/\.md$/} readdir($dh);
     closedir($dh);
 
+    @files = sort { $b cmp $a } @files;
     my @pages = map {Page->new(file => $_)} @files;
     return \@pages;
 }
 
-#has writer => (
-#    is => 'ro',
-#    isa => 'Object',
-#    lazy => 1,
-#    default => sub {
-#        my $self = shift;
-#        my $t = $self->file;
-#        $t =~ s/\.md$/.html/;
-#        return FileWriter->new(path => $self->dest_dir . "/" . $t);
-#    }
-#);
-
 sub _assets {
     my $self = shift;
-    my $dest = $self->dest_dir;
+    # TODO fix this weird error
+    my $dest = "./_site"; #$self->dest_dir;
     dircopy("./assets", $dest) or die "Copy failed: $!";
 }
 
@@ -64,9 +54,11 @@ sub publish {
 
     my $html = HtmlBuilder->new;
     my @tmp;
+    push(@tmp, "<div class=\"flow\">\n");
     foreach my $page ($self->entries->@*) {
-        push(@tmp, $page->partial);
+        push(@tmp, "<div>\n" . $page->partial . "</div>");
     }
+    push(@tmp, "</div>\n");
     $html
         ->header
         ->body(join("\n", @tmp))
