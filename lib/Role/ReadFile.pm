@@ -1,10 +1,10 @@
-package Role::Read_file;
+package ReadFile;
 
-use Moose::Role;
+use Moose;
 use namespace::autoclean;
 
 has file => (
-    is => 'ro'
+    is => 'rw'
 );
 
 sub _read_file {

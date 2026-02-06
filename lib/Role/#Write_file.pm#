@@ -1,0 +1,24 @@
+package Role::Write_file;
+
+use Moose::Role;
+use namespace::autoclean;
+
+has file => (
+    is => 'ro'
+);
+
+sub _write_file {
+    my ($self, $contents) = @_;
+    open(my $fh, '>', $self->{file}) or die $!;
+    #my $contents = do { local $/; <$fh> };
+    close($fh);
+}
+
+sub _read_file {
+    my $self = shift;
+    open(my $fh, '<', $self->{source_dir} . "/" . $self->{file}) or die $!;
+    my $temp = do { local $/; <$fh> };
+    close($fh);
+    return $temp;
+}
+__PACKAGE__->meta->make_immutable;

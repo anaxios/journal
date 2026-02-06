@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="css/reset.css"
+    />
+    <style>
+      @layer normal {
+      :root {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: never;
+      }
+      body {
+      /*  background-color: #444444; */
+        background-color: #141414;
+        font-family: "Noto Sans Mono", monospace;
+        font-size: 0.75rem;
+        color: #e0e0e0;
+      }
+      a:link {
+        color: #e0e0e0;
+      }
+      a:visited,
+      a:hover {
+        color: #888888;
+      }
+      h2 {
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+      div {
+
+      }
+      main {
+        background-color: #121212;
+        max-width: 38.5rem;
+        margin: 0 auto;
+      }
+      code {
+        color: #b0b0b0;
+        white-space:pre-wrap;
+      }
+      ul {
+        word-break: break-word;
+        padding-inline-start: var(--m);
+        list-style-position: inside;
+        list-style-type: none;
+      }
+      li {
+        white-space: normal;
+        list-style-position: outside;
+      }
+      li::before {
+        content: "- ";
+        text-indent: calc(var(--s) * -1);
+      }
+      .ascii-art {
+        font-size: 0.625rem; /* 0.625rem 10px */
+        line-height: 1.1;
+        white-space: pre; /* Preserves spaces and line breaks */
+        display: block; /* Spans are inline by default, making it block can help with layout */
+      }
+      .ascii-text {
+        white-space: pre-wrap; /* Preserves spaces and line breaks but allows wrapping */
+      }
+      .ascii-banner {
+        font-size: 0.75rem;
+        line-height: 1;
+        white-space: pre; /* Preserves spaces and line breaks */
+        display: block; /* Spans are inline by default, making it block can help with layout */
+      }
+      .border-gradient {
+        border: var(--xxs) solid;
+        padding: var(--m);
+        border-image-slice: 1;
+        border-image-source: linear-gradient(
+          135deg,
+          rgba(197, 48, 197, 0.08867296918767509) 2%,
+          rgba(48, 122, 197, 0.0802696078431373) 39%,
+          rgba(197, 122, 48, 0.0718662464985994) 91%
+        );
+      }
+      .flow > *:where(:not(:last-child)) {
+        --gap: var(--xxl);
+        margin-bottom: var(--gap);
+        /* outline: 1px solid red; */
+      }
+}
+    </style>
+  </head>
+  <body>
+    <main class="border-gradient">
+<h1>2026-01-26</h1>
+<pre class=ascii-art>
+     \  /       Partly cloudy
+   _ /"".-.     19(8) °F
+     \_(   ).   ↘ 9 mph
+     /(___(__)  9 mi
+                0.0 in
+</pre>
+
+<h2>11:45:01</h2>
+
+<p>I'm writing this from the cheapest motel in Nashville, TN.
+I was kicked out of my parent's house and left to be homeless.
+We had a major storm that left a few inches of snow on on the ground on Saturday and then Sunday turned the snow into ice with frozen rain.
+The next few days are subzero but the storm was pretty mild here.
+I'm very grateful and lucky to have been given the money for this motel during the storm.</p>
+
+<p>It would have been a very terrible experience without the generosity of friends and also strangers from Twitter.</p>
+
+<h2>20:59:51</h2>
+
+<p>How to change TTL on macOS 12 and newer</p>
+
+<p>Changing the TTL value may be useful. Especially, for those whose carrier restricts sharing Internet access through their personal hotspot. If you found this guide, I don’t think you need any explanation on what TTL is. This guide allows you to change the TTL value forever.</p>
+
+<p>Step 1. Open Terminal. You can do this either by using Spotlight or through Launchpad.</p>
+
+<p>Step 2. In the terminal window enter the following command:</p>
+
+<p><code>
+sudo nano /Library/LaunchDaemons/com.startup.sysctl.plist
+</code></p>
+
+<p>This command creates a file that will be launched on every boot up of your Mac. The file is empty right now, so we need to enter the instructions for the Mac to execute.</p>
+
+<p>Step 3. The instructions themselves is the following text:</p>
+
+<p><code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.startup.sysctl&lt;/string&gt;
+    &lt;key&gt;LaunchOnlyOnce&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/sbin/sysctl&lt;/string&gt;
+        &lt;string&gt;net.inet.ip.ttl=65&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></p>
+
+<p>After pasting this into the file, press ^X combination to exit the file. When it asks to save the file choose “Yes”, then hit the Return key.</p>
+
+<p>Step 4. The next thing we need to do is enter the following commands in Terminal:</p>
+
+<p><code>
+chown root:wheel /Library/LaunchDaemons/com.startup.sysctl.plist
+sudo launchctl load /Library/LaunchDaemons/com.startup.sysctl.plist
+</code></p>
+
+<p>Step 5. Restart your Mac.</p>
+
+<p>Step 6. Open Terminal again and check if everything was done correctly with this command:</p>
+
+<p><code>
+ping 127.0.0.1
+</code></p>
+
+<p>If you see the TTL=65, then you’ve done everything correctly. If not, repeat the process again.</p>
+
+<p>In case something went wrong or you just want to revert the changes, you can just delete the file. To delete it, enter the following command in Terminal:</p>
+
+<p><code>
+sudo rm /Library/LaunchDaemons/com.startup.sysctl.plist
+</code></p>
+
+<p>yoinked from <a href="https://medium.com/@arciomsavucin/how-to-change-ttl-on-macos-monterey-990aa714be1d">https://medium.com/@arciomsavucin/how-to-change-ttl-on-macos-monterey-990aa714be1d</a></p>
+
+
+<h1>2026-01-12</h1>
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  37 °F
+    _ - _ - _   ↘ 2 mph
+   _ - _ - _ -  1 mi
+                0.0 in
+</pre>
+
+<h2>01:47:36</h2>
+
+<p>I think I fixed the journal script when it creates a new file for the day. I turned the weather ascii art into a stand alone script so I can use it directly.</p>
+
+<p>I'm starting to use markdown in these files instead of the original plain text since they are primarily being viewed from html. I need to figure out how to make the pages searchable. My first idea is to render a single page version that can be 'Ctrl + F'ed in the browser. There's probably a more sophisticated way to do it but I kind of like the site being just html pages.</p>
+
+<h2>03:11:40</h2>
+
+<p>To move panes around in tmux <prefix> + { (up) or } (down) or left or right depending on the layout.</p>
+
+<p>To change the pane layout <prefix> + space.</p>
+
+<h2>06:44:36</h2>
+
+<p>I fixed an off by one bug in the comment banner script</p>
+
+<pre class=ascii-banner>
+################################################################################
+#                                                                              #
+#                              Now I can do this!                              #
+#                                                                              #
+################################################################################
+</pre>
+
+<h2>07:01:32</h2>
+
+<p>I need to remember to move all the scripts that are required to use this journal and put them all in the repo so I can reproduce the setup.</p>
+
+<p>I also need to mark down all the dependencies for the same reason.</p>
+
+<h2>22:12:00</h2>
+
+<p>This is useful: <a href="https://nekocalc.com/px-to-rem-converter">https://nekocalc.com/px-to-rem-converter</a></p>
+
+
+<h1>2025-12-29</h1>
+<h2>07:18:26</h2>
+
+<p>to install caligula: <code>brew tap philocalyst/tap &amp;&amp; brew install caligula</code></p>
+
+<h2>12:19:22</h2>
+
+<p>I just looked up how much gas is going to be and it will be minimum $250 to get to Franklin, TN. I thought I was so close.</p>
+
+<p>I'm very annoyed that I cannot log into my phone account or contact them but they still charged me $75 for the year. Good2Go is the worst service, but it's only $5 a month.</p>
+
+<h2>17:17:47</h2>
+
+<p>Found the monospace design thing I was looking for forever. <a href="https://owickstrom.github.io/the-monospace-web/">https://owickstrom.github.io/the-monospace-web/</a></p>
+
+<h2>19:12:44</h2>
+
+<p>someone from ##llama irc showed me this themes site for irssi: <a href="https://irssi-import.github.io/themes/">https://irssi-import.github.io/themes/</a></p>
+
+<p>installing the gruvbox theme for irssi</p>
+
+
+<h1>2026-01-02</h1>
+<h2>02:28:54</h2>
+
+<p>played minecraft for 7 hours yesterday.</p>
+
+
+<h1>2026-01-13</h1>
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  +37(33) °F
+    _ - _ - _   ↘ 4 mph
+   _ - _ - _ -  1 mi
+                0.0 in
+</pre>
+
+<h2>01:55:13</h2>
+
+<pre class="ascii-art">
+ _______________________________________
+/ Anyone want to start a cult with me?  \
+| Joining a cult kind of suck but       |
+| starting one seems like a pretty good |
+\ gig.                                  /
+ ---------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre>
+
+<p>Watched a video about the Church of the SubGenius. I always forget about how weird that is.</p>
+
+<p>Listening to <a href="https://www.slackradio.org/">https://www.slackradio.org/</a> right now. It's part of the SubGenius church stuff.</p>
+
+<h2>06:18:13</h2>
+
+<p>I think I got the journal to stop overflowing text and changed the font to IBM Plex Mono. I also fixed a bug where nb doesn't list all the entries.</p>
+
+
+<h1>2025-12-28</h1>
+<h2>02:51:37</h2>
+
+<p>Yesterday I used beet to organize my music library and it named duplicates with a '.' and a number at the end of the file. I used find to find them all and there weren't many so I used find to also delete them. I think I might start importing Jacob's music and do the same thing for the duplicates. I have 60 something GB of music and he has over 200 GB. It might take me a week to get through it all.</p>
+
+<h2>13:12:59</h2>
+
+<p>wrote a bash script that finds duplicate files by hash. It's in the scripts dir in dotfiles repo.</p>
+
+<h2>16:07:04</h2>
+
+<p>Found a Minecraft datapack 'JJThunder To The Max' that has extreme realistic terrain generation. I put it on bastian and loading a 3000x3000 chunk area to play around.</p>
+
+<h2>21:21:12</h2>
+
+<p>I finished the dedoop script. I added features to show a help message and an option for debug and whether or not to print the output to a file.</p>
+
+<p>I'm heating up lasagna for dinner.</p>
+
+<h2>23:50:49</h2>
+
+<h2 id="llamaonliberachatircuseslimnoriabot.">llama on liberachat irc uses Limnoria bot.</h2>
+
+<p>wodencafe from ##llama told me about <a href="https://xpra.org">https://xpra.org</a> "screen for X11" remote desktop software. I has a very cool feature of being able to forward single application that integrate into the local desktop well.</p>
+
+
+<h1>2025-12-27</h1>
+<h2>00:02:14</h2>
+
+<p>Writing from the future.</p>
+
+<p>I'm writing this from artix which is in Eastern time zone it's actually 16:02:14 here. I'm not sure how to deal with this properly.</p>
+
+<p>I created a script 'journal' that opens today's interstitial journal and if it doesn't exist it creates it.</p>
+
+<p>I fixed the time zone issue by sending my time zone over ssh using an env variable.</p>
+
+<h2>06:01:55</h2>
+
+<p>Woke up early despite going to bed late. Ate two string cheese. My feet were tingly. Too many carbs or too much salt from the giant pile of Chinese food I ate. I'm resisting having leftovers.</p>
+
+<h2>14:05:30</h2>
+
+<p>found some neat terminal programs <a href="https://youtu.be/3BxIpVk_xZI?si=KH5maVSDijdgAnYB">https://youtu.be/3BxIpVk_xZI?si=KH5maVSDijdgAnYB</a></p>
+
+<ul>
+<li><a href="https://durdraw.org/">https://durdraw.org/</a> - a terminal pixel animating program with neofetch support</li>
+<li><a href="https://github.com/ifd3f/caligula">https://github.com/ifd3f/caligula</a> - terminal use burning front end for dd</li>
+<li><a href="https://github.com/sharkdp/pastel">https://github.com/sharkdp/pastel</a> - terminal color picker</li>
+<li><a href="https://github.com/da-luce/astroterm">https://github.com/da-luce/astroterm</a> - terminal planetarium</li>
+</ul>
+
+<h2>14:42:56</h2>
+
+<p>updated vim with habamax and indent rules and turned spelling on.</p>
+
+<h2>16:16:25</h2>
+
+<p>More terminal programs: <a href="https://youtu.be/32O0a6qCQaQ?si=QMzdF0AVUpWhYr98">https://youtu.be/32O0a6qCQaQ?si=QMzdF0AVUpWhYr98</a></p>
+
+<ul>
+<li><a href="https://github.com/Canop/dysk">https://github.com/Canop/dysk</a> - like df but nicer format</li>
+<li><a href="https://github.com/dylanaraps/pure-bash-bible">https://github.com/dylanaraps/pure-bash-bible</a> - bash bible</li>
+<li><a href="https://wiki.archlinux.org/title/Xephyr">https://wiki.archlinux.org/title/Xephyr</a> - nested X server</li>
+<li><a href="https://www.calcurse.org/">https://www.calcurse.org/</a> or calsurse - tui calendar apps</li>
+<li><a href="https://github.com/mrusme/zeit">https://github.com/mrusme/zeit</a> - tui time tracker</li>
+</ul>
+
+<h2>23:50:33</h2>
+
+<p>I'm trying to organize Jacob's music. I tested a command line tool called beet on my library but I messed up and copied duplicates instead of doing the right thing. I'm trying Lidarr now to see if that works well. The problem is the library has a lot of messed up and missing tracks so its probably just going to be a huge pain.</p>
+
+<p>Nik said he would share his 150 GB music library with me and I'll share mine in return. That would be awesome!</p>
+
+<p>I set up mpd and rmpc to play music it was a bit of a headache to setup but it's working now.</p>
+
+
+<h1>2026-01-08</h1>
+<h2>02:39:51</h2>
+
+<p>Tried to use the developer experience for Bazzite and it broke ssh-agent. I rolled back to standard bazzite. <a href="https://github.com/ublue-os/bazzite-dx">https://github.com/ublue-os/bazzite-dx</a></p>
+
+<p>I made a really simple skeleton farm for bones and arrow from the spawner under my base.</p>
+
+<p>I saw a video on youtube about how they cracked the Zodiac Killer cipher. The cipher text itself looks really cool. <a href="https://www.dcode.fr/zodiac-killer-cipher">https://www.dcode.fr/zodiac-killer-cipher</a></p>
+
+<h2>21:20:55</h2>
+
+<p>I've been working on a static site generator to publish this interstitial journal on the web. It's written in bash with a ascii art style.</p>
+
+<p>Now that I'm publishing this I should write things that are interesting...</p>
+
+<h2>21:48:15</h2>
+
+<p>This is a test of the automatic weather function.</p>
+
+<h2>22:02:56</h2>
+
+<p>journal script will now insert the weather before entries but only once an hour so it's not repeating.</p>
+
+<p>Maybe I'll get the current song from the mpd server too.</p>
+
+<h2>23:18:33</h2>
+
+<pre class="ascii-art">
+ _________________________________________
+/ Currently listening to: Two Door Cinema \
+\ Club - Settle                           /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre>
+
+<p>Trying to get cow to display correctly but I think it's a bug in aha, Oh well.</p>
+
+<h2>23:45:24</h2>
+
+<pre class="ascii-art">
+ ________________________________________
+/ Currently listening to: Arctic Monkeys \
+\ - Secret Door                          /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre>
+
+<h2>23:48:01</h2>
+
+<p>This journal thing is coming together. It's still a little sketchy. I wish there was a tool that actually did what I want when converting ansi escape codes to html.</p>
+
+
+<h1>2026-01-09</h1>
+<h2>01:15:44</h2>
+
+<p>I think I'm going to disconnect this journal publishing thing from nb. I don't know maybe all the git stuff is worth it.</p>
+
+<h2>02:16:02</h2>
+
+<p>Adding a very flaky auto push to git feature to the journal publisher script. I wonder how nb does it without getting mixed up in merge conflicts?</p>
+
+<h2>10:21:30</h2>
+
+<pre class="ascii-art">
+ _________________________________________
+/ Currently listening to: Two Door Cinema \
+| Club - Do You Want It All? (live at     |
+\ Brixton Academy)                        /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+
+<p>I think I got links to work and ascii art to work too but I have to treat the files like markdown instead of plain text like I really want. I probably would have to write my own parser to  get that.</p>
+
+<p>I added keybindings to turn links into markdown links in vim so I don't have to do it myself.</p>
+
+<pre><code>- `nnoremap &lt;leader&gt;ml :%s#\(https\?:\/\/\S\+\)#[\1](\1)#g&lt;CR&gt;`
+- `xnoremap &lt;leader&gt;ml :s#\(https\?:\/\/\S\+\)#[\1](\1)#g&lt;CR&gt;`
+</code></pre>
+
+<pre class="ascii-art">
+      \   /     Sunny
+       .-.      46 °F
+    ― (   ) ―   ↖ 2 mph
+       `-’      9 mi
+      /   \     0.0 in
+
+</pre>
+
+<h2>10:34:00</h2>
+
+<p>Added a weather thingy.</p>
+
+<h2>19:48:05</h2>
+
+<p>Found a list of tui apps: <a href="https://github.com/rothgar/awesome-tuis/?tab=readme-ov-file">https://github.com/rothgar/awesome-tuis/?tab=readme-ov-file</a></p>
+
+
+<h1>2025-12-26</h1>
+<h2>00:33:38</h2>
+
+<p>set up netdata on miyo server and bastian using docker. port: 19999</p>
+
+<p>I moved management of miyo server to use docker context from bastian instead of needing to ssh into the machine directly</p>
+
+<p>I also created a new ssh key for bastian and stored a backup in keepass. Using gpg-agent was impossible over ssh. It was always a pain in the ass, unfortunately.</p>
+
+<h2>07:58:45</h2>
+
+<p>Signed up for Oracle Cloud again. This time they accepted my debit card.</p>
+
+<p>Oracle server name is artix. It should have been artax but I'm retarded.</p>
+
+<h2>08:28:02</h2>
+
+<p>Oracle server name would have been artix but they are out of Ampere free teir capacity. Oh well, it was worth a try.</p>
+
+<h2>08:58:14</h2>
+
+<p>I upgraded the oracle cloud account to pay as you go and set a budget to warn me of charges. I'll keep trying to create a server but I've had no luck so far.</p>
+
+<p>I created a free sql database on oracle cloud and stored the password in keepass.</p>
+
+<h2>09:11:44</h2>
+
+<p>turned off git gpg signing</p>
+
+<pre><code>- `git config --global commit.gpgsign false`
+- `git config --global tag.gpgsign false`
+</code></pre>
+
+<h2>20:39:33</h2>
+
+<p>Oracle Cloud worked and I am writing this note from artix server!</p>
+
+<p>I'm not sure if I'm going to use artix as a main ssh system or just a docker server.</p>
+
+<h2>22:37:06</h2>
+
+<p>Put tailscale on artix server.</p>
+
+<p>I tried to rsync the postgress docker to artix but all the table data is missing. I guess I need to dump and insert</p>
+
+<p>I put irssi on artix</p>
+
+<p>maybe I'll figure out how to use the free sql database on oracle cloud instead of running postgres in docker.</p>
+
+<h2>23:35:42</h2>
+
+<p>I did a pg_dumpall bastian server and restored it on the artix server and that worked.</p>
+
+<h2>18:30:26</h2>
+
+<p>adding mods to cavegame modpack</p>
+
+<pre><code>- no-telemetry
+- no-chat-reports
+</code></pre>
+
+<h2>19:56:49</h2>
+
+<p>playing around with a selfhosted app noteDiscovery. It's very a simple markdown notes app. No image support other than http links. It does support wiki style links which is nice.</p>
+
+<h2>21:26:53</h2>
+
+<p>watching video after video from github Awesome on youtube to find selfhosted apps.</p>
+
+<h2>23:05:14</h2>
+
+<p>I'm off to bed. I spent the last few hours watching more Github Awesome videos trying to find self hosted things to install.</p>
+
+
+<h1>2025-12-31</h1>
+<h2>01:33:12</h2>
+
+<p>I transferred Jacob's music to atreyu and used musicbrainz picard to ID the tracks. I'm doing the 'A's first. I'm using <code>find MUSIC_JACOBS/ -maxdepth 1 -type d -iname 'a*' -exec mv {} MUSIC/ \;</code> to move the files to a staging directory and then let picard work on them. It's very tedious and most of the albums are terrible grunty metal which I will never listen to.</p>
+
+<h2>13:24:13</h2>
+
+<p>For a more stable experience with nvidia:</p>
+
+<pre><code>- set nvidia_drm.modeset=1 in grub
+- bazzite you need to use rpm-ostree kargs --editor to change boot parameters
+</code></pre>
+
+<p>I have been having crashing issues with chad's computer and Bazzite. It locks up randomly. I hope the above will help, but I feel like it was already turned on by default.</p>
+
+<h2>14:29:14</h2>
+
+<p>The other day xavierd from ##llamas irc offered to let me use a VM on his vps to play around with kubernetes</p>
+
+<h2>15:02:45</h2>
+
+<p>tailscale admin pannel is down.</p>
+
+<p>I can't connect to 0x0.st I'm getting SSL_ERROR_RX_RECORD_TOO_LONG error in Firefox but not when I use artix as an exit node. Weird.</p>
+
+<h2>19:10:23</h2>
+
+<p>set up soju as an irc bouncher. I got it to work with irssi but not weechat.</p>
+
+<p>in irssi use <code>/quote chathistory LATEST ##llamas * 1000</code> to download the chat history.</p>
+
+<h2>21:12:49</h2>
+
+<p>The infection in my teeth that I've had for months is back. I went to the hospital and got antibiotic but they ran out of clindamycin. The gums under my nose is swollen and uncomfortable.</p>
+
+
+<h1>2025-12-25</h1>
+<h2>17:05:48</h2>
+
+<p>trying out a tmux layout thing from a YouTube video <a href="https://youtu.be/bBHVlqCK96w?si=-sroMa79R5MwsLfJ">https://youtu.be/bBHVlqCK96w?si=-sroMa79R5MwsLfJ</a></p>
+
+<p>I didn't keep notes for most of the morning. I didn't do much. I slept in until 9 am after waking up early and having two cookies.</p>
+
+<p>earlier today I set up a systemd timer to backup my keepass database but it doesn't work. I need to troubleshoot it.</p>
+
+<h2>17:43:49</h2>
+
+<p>learned how to copy in tmux with mouse mode turned on. Hold shift or (Fn on mac) and then copy using Ctrl + Shift + C</p>
+
+<p>updated tmux config</p>
+
+<p>moved aliases from .bashrc to .alias</p>
+
+<h2>20:54:28</h2>
+
+<p>move podman/docker stuff from /mnt/storage/podman to Projects/bastian-server</p>
+
+<h2>21:37:54</h2>
+
+<p>found jumping spiders on the cavegame server, also otters crack open oysters and will give you pearls for a necklace.</p>
+
+<p>earlier today I found nix-prompt <a href="https://github.com/nix-tricks/nix-prompt">https://github.com/nix-tricks/nix-prompt</a></p>
+
+
+<h1>2025-12-24</h1>
+<h2>12:08:53</h2>
+
+<p>transferred password database to keepassxc</p>
+
+<p>cancelled Proton Unlimited. 8 days remain in current billing period.</p>
+
+<h2>14:06:20</h2>
+
+<p>installed nb notes and connected it with a private github repo called 'notes'</p>
+
+<h2>14:23:27</h2>
+
+<p>synced dotfiles repo and added 'now' and 'today' scripts for easily intertion into text files</p>
+
+<h2>14:25:42</h2>
+
+<p>testing if nb github sync works on save or exit</p>
+
+<h2>15:08:33</h2>
+
+<p>added dotfiles to atreyu</p>
+
+<p>created and stored new ssh key for atreyu and stored it in keepassxc</p>
+
+<p>updated bash dotfiles and used 'stow bash' to put them in place</p>
+
+<h2>15:42:12</h2>
+
+<p>mom got me topo chico for christmas and Pamegranite juice to make healthy soda.</p>
+
+<p>eating a hand full of pita chips</p>
+
+<p>thinking about how hard it is to be organized</p>
+
+<p>playing around on cavegame minecraft server a bit</p>
+
+<h2>16:06:12</h2>
+
+<p>watched video on a complete digital bible note system <a href="https://youtu.be/8cdB1Any77k?si=TcPGO5YVxYUPktqG">https://youtu.be/8cdB1Any77k?si=TcPGO5YVxYUPktqG</a></p>
+
+<h2>17:03:01</h2>
+
+<p>got elytra in minecraft from the cheater villager. I can finally use the rockets that have been sitting there for years.</p>
+
+<p>This cavegame world is the original modded server I first called Orthocraft. It's very nostalgic to see the first builds I ever made. I upgraded the world file from 1.17 to my cavegame modpack on 1.20.1 the other day.</p>
+
+<h2>17:21:22</h2>
+
+<p>had a terrible christmas cupcake and eating a tamale while watching a supernerdy guy use emacs org-roam to study the bible.</p>
+
+
+<h1>2026-02-01</h1>
+<pre class="ascii-art">
+                Overcast
+       .--.     30(26) °F
+    .-(    ).   ↘ 3 mph
+   (___.__)__)  9 mi
+                0.0 in
+
+</pre>
+
+<h2>14-09-34</h2>
+
+<p>The Perl module Mouse is pretty nice for creating classes in Perl also namespace::autoclean seems like a must have;</p>
+
+
+<h1>2026-01-10</h1>
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  35 °F
+    _ - _ - _   ↙ 2 mph
+   _ - _ - _ -  3 mi
+                0.0 in
+
+</pre>
+
+<h2>02:42:06</h2>
+
+<pre class=ascii-art>
+ _________________________________________
+/ Currently listening to: Flyleaf - Swept \
+\ Away                                    /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+
+<p>Refreshed my knowledge of vim buffers. I never use them but it is a hassle to not use the yank '0' buffer.</p>
+
+<p>':reg' shows buffers.</p>
+
+<p>To use a register:</p>
+
+<ul>
+<li>'"' then the buffer 'a' (or any register) then the action 'y' (or any available action).</li>
+<li><p>To append to a register use 'SHIFT' then 'A'. macros are just key presses recorded into registers.</p></li>
+<li><p>To start recording: 'q' then a register 'a'.</p></li>
+<li>To run a macro: '@' then the register where it was stored.</li>
+</ul>
+
+<h2>02:59:25</h2>
+
+<pre class=ascii-art>
+ ________________________________
+/ Currently listening to: CAKE - \
+\ Pentagram                      /
+ --------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+
+<p>I started watching a Golang tutorial. <a href="https://youtu.be/x8LbnczFU0E?si=tKe5hF65rcO80Fgh">https://youtu.be/x8LbnczFU0E?si=tKe5hF65rcO80Fgh</a> I don't know if I want to learn a language right now, but I want to make a file upload app like 0x0.st or transfer.sh. I'm very tempted to just use Javascript and Hono like I always do. Apps that run from a single binary would be really nice.</p>
+
+<h2>03:24:39</h2>
+
+<pre class=ascii-art>
+ ____________________________________
+/ Currently listening to: Maroon 5 - \
+\ Don’t Know Nothing               /
+ ------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+
+<p>I found a less contrasty black and white palette for the journal.</p>
+
+<p>Monochromatic Minimalism</p>
+
+<ul>
+<li>Background: #121212 (charcoal black)</li>
+<li>Primary Text: #E0E0E0 (light gray)</li>
+<li>Secondary Text: #B0B0B0 (medium gray)</li>
+<li>Borders/Dividers: #444444 (dark gray)</li>
+<li>Accent: #888888 (soft gray)</li>
+</ul>
+
+<h2>05:21:57</h2>
+
+<pre class=ascii-art>
+ _________________________________________
+/ Currently listening to: Mew - Her Voice \
+\ Is Beyond Her Years                     /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+
+<p>Created keyboard shortcuts for <code>mpc toggle</code> <code>mpc prev</code> <code>mpc next</code> in KDE by doing the trick where you change what a script does by symlinking it to a different name.</p>
+
+<p>KDE has a stupid shortcut system so I first wanted to use a hotkey daemon. I found this: <a href="https://github.com/waycrate/swhkd">https://github.com/waycrate/swhkd</a> but I had to use debian in distrobox to compile it. Setting it up was not working. I got tired of fiddling and did it the KDE way. I really wanted the setup to be agnostic of what window manager/desktop I use.</p>
+
+<h2>12:23:12</h2>
+
+<p>Maybe there's something wrong with me, but I want to use Perl. As much a I love Bash, it gets pretty hairy pretty fast.</p>
+
+
+<h1>2026-01-14</h1>
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  +37(35) °F
+    _ - _ - _   ↓ 2 mph
+   _ - _ - _ -  1 mi
+                0.0 in
+</pre>
+
+<h2>02:46:44</h2>
+
+<p>I'm trying to figure out how to make the journal site better. I can easily put all the posts on one page. I played around with that last night.</p>
+
+<p>Yesterday, I went to the local Assyrian bakery. The croissant was good. I look like a hobo and they seemed like they didn't want me there. It's weird how if a person looks like a crazy hobo they probably are a crazy person, but if someone looks like a well put together person they could be a crazy person too. Normal people don't try to make themselves look like crazy people but crazy people try to make themselves look like normal people.</p>
+
+<h2>03:06:20</h2>
+
+<p>It's 3 am and I had to close the window because of a strong perfume coming in. Who the fuck is up 3 am and what are they doing that would make such a strong smell that the neighbors have to shut their windows?</p>
+
+<h2>04:36:12</h2>
+
+<p>Looks like they are going all in with AI. Pete Hegseth want to use it for the Department of War <a href="https://youtu.be/37rV4AJvaxk?si=4tuTRZTdNcdRT28n">https://youtu.be/37rV4AJvaxk?si=4tuTRZTdNcdRT28n</a> This is not good. They want to put Grok in the military.</p>
+
+<h2>05:22:11</h2>
+
+<p>Perl Cheat Sheet:</p>
+
+<p><code>
+CONTEXTS  SIGILS  ref        ARRAYS        HASHES
+void      $scalar SCALAR     @array        %hash
+scalar    @array  ARRAY      @array[0, 2]  @hash{'a', 'b'}
+list      %hash   HASH       $array[0]     $hash{'a'}
+          &amp;sub    CODE
+          *glob   GLOB       SCALAR VALUES
+                  FORMAT     number, string, ref, glob, undef
+REFERENCES
+\      reference       $$foo[1]       aka $foo-&gt;[1]
+$@%&amp;*  dereference     $$foo{bar}     aka $foo-&gt;{bar}
+[]     anon. arrayref  ${$$foo[1]}[2] aka $foo-&gt;[1]-&gt;[2]
+{}     anon. hashref   ${$$foo[1]}[2] aka $foo-&gt;[1][2]
+\()    list of refs
+                       SYNTAX
+OPERATOR PRECEDENCE    foreach (LIST) { }     for (a;b;c) { }
+-&gt;                     while   (e) { }        until (e)   { }
+++ --                  if      (e) { } elsif (e) { } else { }
+**                     unless  (e) { } elsif (e) { } else { }
+! ~ \ u+ u-            given   (e) { when (e) {} default {} }
+=~ !~
+* / % x                 NUMBERS vs STRINGS  FALSE vs TRUE
++ - .                   =          =        undef, "", 0, "0"
+&lt;&lt; &gt;&gt;                   +          .        anything else
+named uops              == !=      eq ne
+&lt; &gt; &lt;= &gt;= lt gt le ge   &lt; &gt; &lt;= &gt;=  lt gt le ge
+== != &lt;=&gt; eq ne cmp ~~  &lt;=&gt;        cmp
+&amp;
+| ^             REGEX MODIFIERS       REGEX METACHARS
+&amp;&amp;              /i case insensitive   ^      string begin
+|| //           /m line based ^$      $      str end (bfr \n)
+.. ...          /s . includes \n      +      one or more
+?:              /x /xx ign. wh.space  *      zero or more
+= += last goto  /p preserve           ?      zero or one
+, =&gt;            /a ASCII    /aa safe  {3,7}  repeat in range
+list ops        /l locale   /d  dual  |      alternation
+not             /u Unicode            []     character class
+and             /e evaluate /ee rpts  \b     boundary
+or xor          /g global             \z     string end
+                /o compile pat once   (p)    capture
+DEBUG                                 (?:p)  no capture
+-MO=Deparse     REGEX CHARCLASSES     (?#t)  comment
+-MO=Terse       .   [^\n]             (?=p)  ZW pos ahead
+-D##            \s  whitespace        (?!p)  ZW neg ahead
+-d:Trace        \w  word chars        (?&lt;=p) ZW pos behind \K
+                \d  digits            (?&lt;!p) ZW neg behind
+CONFIGURATION   \pP named property    (?&gt;p)  no backtrack
+perl -V:ivsize  \h  horiz.wh.space    (?|p|p)branch reset
+                \R  linebreak         (?&lt;n&gt;p)named capture
+                \S \W \D \H negate    \g{n}  ref to named cap
+                                      \K     keep left part
+FUNCTION RETURN LISTS
+stat      localtime    caller         SPECIAL VARIABLES
+ 0 dev    0 second      0 package     $_    default variable
+ 1 ino    1 minute      1 filename    $0    program name
+ 2 mode   2 hour        2 line        $/    input separator
+ 3 nlink  3 day         3 subroutine  $\    output separator
+ 4 uid    4 month-1     4 hasargs     $|    autoflush
+ 5 gid    5 year-1900   5 wantarray   $!    sys/libcall error
+ 6 rdev   6 weekday     6 evaltext    $@    eval error
+ 7 size   7 yearday     7 is_require  $$    process ID
+ 8 atime  8 is_dst      8 hints       $.    line number
+ 9 mtime                9 bitmask     @ARGV command line args
+10 ctime               10 hinthash    @INC  include paths
+11 blksz               3..10 only     @_    subroutine args
+12 blcks               with EXPR      %ENV  environment
+</code></p>
+
+
+<h1>2026-01-30</h1>
+<pre class="ascii-art">
+                Overcast
+       .--.     24(15) °F
+    .-(    ).   ↘ 9 mph
+   (___.__)__)  9 mi
+                0.0 in
+
+</pre>
+
+<h2>19-54-08</h2>
+
+<p>I'm rewriting this site in Perl ;D</p>
+
+<h2>20-00-37</h2>
+
+<p>It's nice to write this in a "real" programming language.</p>
+
+<h2>20-45-33</h2>
+
+<p>Created my first class in Perl! Neat! (It's kind of useless but it's mine)</p>
+
+
+<h1>2026-01-04</h1>
+<h2>01:27:18</h2>
+
+<p>The donkey with a saddle and not chest is the fast one for now on vanilla server.</p>
+
+
+<h1>2026-01-15</h1>
+<pre class=ascii-art>
+                Fog
+   _ - _ - _ -  37 °F
+    _ - _ - _   ← 2 mph
+   _ - _ - _ -  0 mi
+                0.0 in
+</pre>
+
+<h2>03:53:10</h2>
+
+<p>I found the album the guy who plays Steven Harrington from Stranger Things made. It's not terrible. <a href="https://youtube.com/playlist?list=PLd8W-283kUR8cyVH4OK2iA-hH3qNyDm5M&amp;si=Ouu8cgs3c8Cnsr9O">https://youtube.com/playlist?list=PLd8W-283kUR8cyVH4OK2iA-hH3qNyDm5M&amp;si=Ouu8cgs3c8Cnsr9O</a></p>
+
+<h2>03:56:44</h2>
+
+<p>I transcoded the flac files in my music library to opus 160k vbr to save space. My library went from 116GB to about 40GB. I can't tell the difference so why waste space?</p>
+
+
+<h1>2026-01-05</h1>
+<h2>16:12:40</h2>
+
+<p>I created and reworked a bash script that lets you talk to an llm. It currently works with ollama but I think it would be ez to setup chatgpt. It saves conversations and everything. I need to work on the output formating.</p>
+
+<p>I'm looking for an ez self hosted file sharing service. transfer.sh looks interesting.</p>
+
+
+<h1>2026-01-11</h1>
+<pre class=ascii-art>
+                Mist
+   _ - _ - _ -  +39(37) °F
+    _ - _ - _   ↘ 3 mph
+   _ - _ - _ -  3 mi
+                0.0 in
+
+</pre>
+
+<h2>00:35:53</h2>
+
+<p>I found <a href="https://juicefs.com">https://juicefs.com</a> which mounts an s3 compatible storage locally and encrypts the data in transit and at rest.</p>
+
+<p>I also found <a href="https://bunny.net/">https://bunny.net/</a> to use as storage.</p>
+
+<h2>05:01:46</h2>
+
+<p>I ended up using backblaze as the backend to juicefs (bunny.net only has sftp). The setup of juicefs is a little involved but their docs are good enough that I figured it out. I set up encryption and postgres so I can connect to the volume from any computer on my tailscale network. The nice thing about backblaze is that 1TB is $6 so even if I wanted to upload Jacob's entire collection it wouldn't even be $3 a month to store. As it is now, it will be a few cents a month.</p>
+
+<p>To mount the juicefs volume you need the RSA encryption key stored in the environment variable <code>$JFS_RSA_PASSPHRASE</code> you also need to to tell it where the database is and how to connect with a postgres url. I have it automount on artix with systemd because I can pass it the keys it needs automatically.</p>
+
+<p>I couldn't get it to automount on atreyu because the juicefs binary is not able to be linked to the appropriate place in <code>/sbin/mount.juicefs</code> because that part of the filesystem is readonly.</p>
+
+<p>I had to restore a database from backup because postgres changed a default and the container wasn't storing the databases to the volume. Luckily I made a backup with databasus.</p>
+
+<p>I restored the backup with the wrong user, luckily I found this insane looking loop that I used to change the owner of each table back to the right user. I need to actually learn how to manage a postgres database and not just wing it like a cowboy.</p>
+
+<p>```
+-- Begin an anonymous PL/pgSQL code block
+DO
+$$
+-- Declare a record variable to hold table names
+DECLARE
+    tbl RECORD;
+-- Begin the procedural block
+BEGIN
+    -- Loop through each table in the specified schema (e.g., 'public')
+    FOR tbl IN
+        -- Select all tables from the schema 'public'
+        SELECT tablename
+        FROM pg_catalog.pg_tables
+        WHERE schemaname = 'public'  -- Change 'public' to target a different schema if needed
+    LOOP
+        -- Execute the ALTER TABLE command to change the owner
+        EXECUTE 'ALTER TABLE public.' || quote_ident(tbl.tablename) || ' OWNER TO new_owner';
+        -- Note: Replace 'public' with your schema and 'new_owner' with the new owner's username
+    END LOOP;
+-- End the procedural block
+END;
+$$;</p>
+
+<p>```</p>
+
+<h2>05:19:12</h2>
+
+<p>Trying out <a href="https://github.com/swingmx/swingmusic">https://github.com/swingmx/swingmusic</a> to play music from artix. It's not bad. I would love to have an mpd frontend that streams the music to itself using mpd's http output.</p>
+
+<h2>05:21:56</h2>
+
+<p><a href="https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797">ansii escape codes</a></p>
+
+<h2>06:19:43</h2>
+
+<p>Found a replacement for Sonarr, Radarr, Overseer and Jellyseer. I might give it a try. <a href="https://wiki.serversatho.me/en/mediamanager">https://wiki.serversatho.me/en/mediamanager</a></p>
+
+<p>It's actually freezing right now.</p>
+
+<pre class=ascii-art>
+                Freezing fog
+   _ - _ - _ -  30(26) °F
+    _ - _ - _   ← 3 mph
+   _ - _ - _ -  0 mi
+                0.0 in
+</pre>
+
+<h2>08:49:56</h2>
+
+<p>Trying to sleep but have a bloody nose from a nasty person using perfume in the house.</p>
+
+<h2>16:26:07</h2>
+
+<p>To update nfs exports use <code>sudo exportfs -ra</code></p>
+
+
+        </main>
+    </body>
+</html>
